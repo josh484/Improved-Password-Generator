@@ -96,19 +96,7 @@ var characterLength;
 // Function to prompt user for password options
 function getPasswordOptions() {
   /* check for password length */
-  var characterCheck = false;
-
-  
-  /* checks length of password is within 8-128 otherwise prompt again */
-  do {
-    var characterLengthInput = prompt("Choose length of password between 8-128");
-    characterLength = parseInt(characterLengthInput);
-    if (isNaN(characterLength)) {
-      characterLength = 0;
-    }
-    characterLengthT(characterLength, characterCheck);
-    } while (characterCheck == false && characterLength < 8 || characterLength > 128 && characterCheck == false)
-
+    characterLength = checkNumber();
     pwc = myCheckBox("flexSwitchCheckChecked1");
     lwc = myCheckBox("flexSwitchCheckChecked2");
     nmc = myCheckBox("flexSwitchCheckChecked3");
@@ -126,10 +114,10 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   /* if user does not choose at least one character type keep doing the function */
-  do{
   getPasswordOptions();
+  if (lwc == false && pwc == false && nmc == false && spc == false) {
+    alert("must have at least one type of character")
   }
-  while (lwc == false && pwc == false && nmc == false && spc == false)
   var everyArr = [];
   var letter;
   var chosen
@@ -193,5 +181,15 @@ function myCheckBox(x) {
   }
   else {
     return false
+  }
+}
+
+function checkNumber() {
+  var numbers = document.getElementById("exampleInputEmail1").value;
+  if(numbers < 8 || numbers > 128 && numbers == false){
+    alert("Please type a number between 8-128");
+  }
+  else {
+    return numbers
   }
 }
