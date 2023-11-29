@@ -109,25 +109,10 @@ function getPasswordOptions() {
     characterLengthT(characterLength, characterCheck);
     } while (characterCheck == false && characterLength < 8 || characterLength > 128 && characterCheck == false)
 
-
-
- 
-  /* Check for lowercase */
-  var titleWord = "lowercase";
-  lwc = promptCheck(titleWord);
-
-  /* check for uppercase */
-  titleWord = "uppercase"
-  uwc = promptCheck(titleWord);
-
-  /* check for numeric */
-  titleWord = "number"
-  nmc = promptCheck(titleWord);
-
-  /* check for special character */
-  titleWord = "special character"
-  spc = promptCheck(titleWord);
-
+    pwc = myCheckBox("flexSwitchCheckChecked1");
+    lwc = myCheckBox("flexSwitchCheckChecked2");
+    nmc = myCheckBox("flexSwitchCheckChecked3");
+    spc = myCheckBox("flexSwitchCheckChecked4");
 }
 
 
@@ -155,7 +140,7 @@ function generatePassword() {
   if (lwc == true){
     everyArr.push(lowerCasedCharacters);
   }
-  if (uwc == true){
+  if (pwc == true){
     everyArr.push(upperCasedCharacters);
   }
   if (nmc == true){
@@ -199,23 +184,14 @@ function characterLengthT(x,y) {
   }
 }
 
-/* creates a yes or no prompt for x to use for each type of character */
-function promptCheck(x) {
-  var Choice;
-  var Check = false
-  do{
-  var Case = prompt("Should Password have " + x + ", type Y or N, You must have at least one of the options chosen") ;
-  Choice = Case.toUpperCase();
-  if (Choice == "Y" || Choice == "N") {
-    Check = true;
-    if (Choice == "Y") {
-      return true;
-    }else {
-      return false;
-    }
+
+
+function myCheckBox(x) {
+  var checkBox = document.getElementById(x);
+  if (checkBox.checked == true){
+    return true
   }
   else {
-    Check = false;
+    return false
   }
-  } while (Check == false)
 }
